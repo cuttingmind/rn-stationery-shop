@@ -16,7 +16,7 @@ export default function RootNavigator() {
           name="ProductList"
           component={ProductListScreen}
           options={{
-            title: 'Канцтовары',
+            title: 'Аптека',
             headerRight: () => <HeaderCartButton />,
           }}
         />

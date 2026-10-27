@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import { CartLine, Product } from '../types/product';
+import { CartLine, Drug } from '../types/product';
 import { useShallow } from 'zustand/react/shallow';
 
 interface CartState {
   lines: Record<string, CartLine>;
 
-  add: (product: Product, quantity?: number) => void;
+  add: (product: Drug, quantity?: number) => void;
   remove: (productId: string) => void;
   increment: (productId: string) => void;
   decrement: (productId: string) => void;
@@ -70,11 +70,7 @@ export const useCartStore = create<CartState>((set) => ({
 export const selectCartCount = (s: CartState): number =>
   Object.values(s.lines).reduce((sum, line) => sum + line.quantity, 0);
 
-export const selectCartTotal = (s: CartState): number =>
-  Object.values(s.lines).reduce(
-    (sum, line) => sum + line.product.price * line.quantity,
-    0,
-  );
+// Цена у лекарств отсутствует, поэтому monetary-итог не считаем.
 
 export const selectCartLines = (s: CartState): CartLine[] =>
   Object.values(s.lines);

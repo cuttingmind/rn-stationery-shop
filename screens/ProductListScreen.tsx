@@ -28,7 +28,7 @@ export default function ProductListScreen() {
       try {
         const data = await fetchProducts();
         if (alive) setProducts(data);
-      } catch (e) {
+      } catch {
         if (alive) setError('Не удалось загрузить товары');
       } finally {
         if (alive) setLoading(false);
